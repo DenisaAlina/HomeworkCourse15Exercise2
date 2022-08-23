@@ -38,6 +38,22 @@ public class PersonServiceTest {
         //THEN
         Assertions.assertThat(result.getId()).isEqualTo(2);
         Assertions.assertThat(personService.getPersonList()).doesNotContain(result);
+
+
+    }
+    @Test
+    public void removeMethodThrowExceptionTest() {
+
+        //GIVEN
+        PersonService personService = new PersonService(new LinkedList<>());
+        personService.addPerson(new Person(20, "Alina"));
+        personService.addPerson(new Person(22, "Adina"));
+        personService.addPerson(new Person(27, "Denisa"));
+
+        //WHEN
+        Person result = personService.removePerson(2);
+
+        //THEN
         org.junit.jupiter.api.Assertions.assertThrows(RuntimeException.class, () -> {
             personService.removePerson(10);
         });
